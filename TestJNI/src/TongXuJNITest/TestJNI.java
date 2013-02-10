@@ -5,7 +5,7 @@
 package TongXuJNITest;
 
 /**
- *
+ * Test Push
  * @author tongxu
  */
 
