@@ -1,0 +1,56 @@
+=========Filter Printf=========
+
+  40050b:	b8 9c 06 40 00       	mov    $0x40069c,%eax
+  400510:	48 89 c7             	mov    %rax,%rdi
+  400513:	b8 00 00 00 00       	mov    $0x0,%eax
+  400518:	e8 c3 fe ff ff       	callq  4003e0 <printf@plt>
+
+=========Filter Printf=========
+
+  40051d:	b8 ae 06 40 00       	mov    $0x4006ae,%eax
+  400522:	8b 55 e8             	mov    -0x18(%rbp),%edx
+  400525:	89 d6                	mov    %edx,%esi
+  400527:	48 89 c7             	mov    %rax,%rdi
+  40052a:	b8 00 00 00 00       	mov    $0x0,%eax
+  40052f:	e8 ac fe ff ff       	callq  4003e0 <printf@plt>
+
+=========Filter Printf=========
+
+  400534:	b8 bb 06 40 00       	mov    $0x4006bb,%eax
+  400539:	48 8d 55 e0          	lea    -0x20(%rbp),%rdx
+  40053d:	48 89 d6             	mov    %rdx,%rsi
+  400540:	48 89 c7             	mov    %rax,%rdi
+  400543:	b8 00 00 00 00       	mov    $0x0,%eax
+  400548:	e8 93 fe ff ff       	callq  4003e0 <printf@plt>
+
+=========Filter Printf=========
+
+  40054d:	b8 cc 06 40 00       	mov    $0x4006cc,%eax
+  400552:	8b 55 ec             	mov    -0x14(%rbp),%edx
+  400555:	48 8d 4d e0          	lea    -0x20(%rbp),%rcx
+  400559:	48 89 ce             	mov    %rcx,%rsi
+  40055c:	48 89 c7             	mov    %rax,%rdi
+  40055f:	b8 00 00 00 00       	mov    $0x0,%eax
+  400564:	e8 77 fe ff ff       	callq  4003e0 <printf@plt>
+
+=========Filter Printf=========
+
+  400569:	b8 df 06 40 00       	mov    $0x4006df,%eax
+  40056e:	8b 55 ec             	mov    -0x14(%rbp),%edx
+  400571:	8b 4d e8             	mov    -0x18(%rbp),%ecx
+  400574:	89 ce                	mov    %ecx,%esi
+  400576:	48 89 c7             	mov    %rax,%rdi
+  400579:	b8 00 00 00 00       	mov    $0x0,%eax
+  40057e:	e8 5d fe ff ff       	callq  4003e0 <printf@plt>
+
+=========Filter Printf=========
+
+  400583:	b8 f2 06 40 00       	mov    $0x4006f2,%eax
+  400588:	48 8d 4d e0          	lea    -0x20(%rbp),%rcx
+  40058c:	8b 55 ec             	mov    -0x14(%rbp),%edx
+  40058f:	8b 5d e8             	mov    -0x18(%rbp),%ebx
+  400592:	89 de                	mov    %ebx,%esi
+  400594:	48 89 c7             	mov    %rax,%rdi
+  400597:	b8 00 00 00 00       	mov    $0x0,%eax
+  40059c:	e8 3f fe ff ff       	callq  4003e0 <printf@plt>
+BUILD SUCCESSFUL (total time: 1 second) 
