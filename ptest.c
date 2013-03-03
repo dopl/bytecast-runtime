@@ -10,7 +10,7 @@ int main(int argc, char* argv[])
 printf("the string is %s",str);
 printf("the string is %s%d",str,ret2);
 printf("The value is %d%d\n",ret,ret2);
-printf("the value is %d%d%s",ret,ret2,str);
+printf("The value is %d%d%s",ret,ret2,str);
 return 0;
 
 }
