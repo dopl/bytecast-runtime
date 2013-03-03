@@ -4,10 +4,6 @@
  */
 package javaapplication;
 
-/**
- *
- * @author chengxu
- */
 import java.io.*;
 import java.util.*;
 import java.io.InputStreamReader;
