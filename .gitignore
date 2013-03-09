@@ -1,0 +1,5 @@
+build/
+dist/
+private/
+*.so
+*.o
