@@ -1,16 +1,18 @@
 #include <stdio.h>
 
-int main(int argc, char * argv[]){
+char Format[] = "the pure print out put\n";
 
-  asm("sub	$32, %esp");
-	asm("movl	%edi, -20(%ebp)");
-	asm("mov	%esi, -32(%ebp)");
-	asm("movb	$99, -1(%ebp)");
-	asm("lea	-1(%ebp), %eax");
-	asm("mov	%eax, %edi");
-	asm("movl	$0, %eax");
-	asm("call	printf");
-	asm("movl	$0, %eax");
-	asm("leave");
-  return 0;
+int main (void)
+{
+   asm
+   (
+      // Make stack space for arguments to printf
+      "subl $20, %esp\n"
+      "movl %eax, 4(%esp)\n"
+      "movl $Format, (%esp)\n"
+      "call printf\n"
+      // Clean-up the stack
+      "addl $20, %esp\n"
+   );
+   return 0;
 }
