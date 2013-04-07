@@ -1,0 +1,4 @@
+#!/bin/sh
+
+gcc -fPIC -g -c -I/usr/lib/jvm/default-java/include -I/usr/lib/jvm/default-java/include/linux/ HelloWorld.c -o HelloWorld.o
+gcc -shared -Wl,-soname,hellworld -o helloworld.so HelloWorld.o

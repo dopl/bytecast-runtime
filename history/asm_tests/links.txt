@@ -1,0 +1,2 @@
+http://www.ibiblio.org/gferg/ldp/GCC-Inline-Assembly-HOWTO.html#s4
+http://stackoverflow.com/questions/2653759/how-can-i-write-a-hello-world-app-in-assembly-language
