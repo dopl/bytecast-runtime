@@ -82,8 +82,6 @@ public class Filter {
                       printfS.add(lines.get(j));
                   }
            }
-           
-           
         }
         
         // if not found, search it in last 10 lines.
@@ -106,12 +104,9 @@ public class Filter {
                   // add the printf in this buffer
                   for(int k=0;k<=linecount;k++)
                       printfS.add(lines.get(k));
-                  }
-           
-              }
-           
-           }
-        
+                  }           
+              }           
+           }        
         }
         
         int a=0;
