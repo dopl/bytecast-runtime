@@ -2,19 +2,24 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package javaapplication;
+package filter2.pkg0;
+
+/*
+ *
+ * @author tongxu
+ */
 
 import java.io.*;
 import java.util.*;
 import java.io.InputStreamReader;
 
 
-public class Filter {
+public class Filter20 {
     
     //printf("The value is %d\n", ret);
     public ArrayList<ArrayList<String>> filtPinrtf_1(String path)
     {
-        ArrayList<ArrayList<String>> AllprintfS=new ArrayList<ArrayList<String>>();
+        ArrayList<ArrayList<String>> AllprintfS= new ArrayList<ArrayList<String>>();
         try 
         {
 
@@ -39,10 +44,10 @@ public class Filter {
                     Lines.clear();
                 }
                 Lines.add(line);
-                if(line.contains("callq  4003e0 <printf@plt>"))
+                if(line.contains("callq  4003e0 <printf@plt>"))//callq  4003e0 <printf@plt>
                 {
                  // find the nearest mov    $0x4006ae,%eax
-                    String linenumber=line.substring(0,line.indexOf(":"));
+                     String linenumber=line.substring(0,line.indexOf(":"));
                      ArrayList<String> printfS= findPrintfCommands(Lines,lastLines,linenumber,linecount);
                      AllprintfS.add((ArrayList<String>)printfS.clone());                
                 }
@@ -78,12 +83,14 @@ public class Filter {
                       printfS.add(lines.get(j));
                   }
            }
+           
+           
         }
         
         // if not found, search it in last 10 lines.
         if(!findIt)
         {
-           for(int i=lastlines.size()-1;i>=0;i--)
+            for(int i=lastlines.size()-1;i>=0;i--)
            {
               String line=lastlines.get(i);
               if(line.contains("mov    $0x") && line.contains(",%eax"))
@@ -100,9 +107,12 @@ public class Filter {
                   // add the printf in this buffer
                   for(int k=0;k<=linecount;k++)
                       printfS.add(lines.get(k));
-                  }           
-              }           
-           }        
+                  }
+           
+              }
+           
+           }
+        
         }
         
         int a=0;
@@ -110,6 +120,23 @@ public class Filter {
         return printfS;
         
     
+    }
+    
+    public static void main(String[] args) {
+        
+        Filter20 ft= new Filter20();
+        ArrayList<ArrayList<String>> results= ft.filtPinrtf_1("a.out.objdump");
+       
+        for(ArrayList<String> printf:results)
+        {
+            System.out.println("\n=========Filter Printf=========\n");   
+       
+                for(String p:printf)
+                {
+                    System.out.println(p);
+       
+                }
+       } 
     }
     
 }
