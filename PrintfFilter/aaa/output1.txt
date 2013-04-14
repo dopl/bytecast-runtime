@@ -1,6 +1,0 @@
-
-a.out:     file format elf32-i386
-
-Contents of section .rodata:
- 80484a8 03000000 01000200 74686520 70757265  ........the pure
- 80484b8 20707269 746f7574 00                  pritout.       
