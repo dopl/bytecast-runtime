@@ -9,10 +9,6 @@ import java.util.*;
 import java.io.InputStreamReader;
 
 
-
-
-
-
 public class Filter {
     
     //printf("The value is %d\n", ret);
@@ -120,6 +116,5 @@ public class Filter {
         
     
     }
-    
     
 }

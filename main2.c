@@ -141,7 +141,7 @@ int main(void)
         memset (anon,0xc3,4096);
    
         // executable code : printf in main function ( run failed)
-/*
+
                tempCode[0]=0x55;
        tempCode[1] = 0x89;
    tempCode[2] = 0xe5;
@@ -178,10 +178,10 @@ int main(void)
      tempCode[23] = 0xc9;
 
    tempCode[24] = 0xc3;
-*/
+
    
    // executable code 2: test, return value 1 in main function.
-     tempCode[0]=0x55;
+  /*   tempCode[0]=0x55;
        tempCode[1] = 0x89;
    tempCode[2] = 0xe5;
 
