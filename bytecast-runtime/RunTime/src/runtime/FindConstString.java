@@ -7,20 +7,17 @@ package edu.syr.bytecast.jimple.runtime;
 import java.io.*;
 import java.util.List;
 
-/**
- *
- * @author mengxi
- */
 public class FindConstString {
     List<String> ConstStringList; 
     public void find(String rodataFilePath)
     {        
         try
         {
-            BufferedReader br=null;            
-            br= new BufferedReader(new FileReader(rodataFilePath));            
             String line;
             String str;
+            BufferedReader br=null;            
+            br= new BufferedReader(new FileReader(rodataFilePath));            
+           
             while ((line = br.readLine()) != null) {
                 if(line.contains("rodata"))
                 {
