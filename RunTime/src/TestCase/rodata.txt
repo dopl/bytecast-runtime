@@ -1,6 +1,0 @@
-
-a.out:     file format elf32-i386
-
-Contents of section .rodata:
- 8048538 03000000 01000200 54686520 76616c75  ........The valu
- 8048548 65206973 2025640a 00                 e is %d..       
