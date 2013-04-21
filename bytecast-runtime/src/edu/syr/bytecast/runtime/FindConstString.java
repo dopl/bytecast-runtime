@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.syr.bytecast.jimple.runtime;
+package edu.syr.bytecast.runtime;
 
 import java.io.*;
 import edu.syr.bytecast.amd64.api.constants.FileFormats;
@@ -37,7 +37,7 @@ public class FindConstString {
                         findEnd = true;
                         endOffset = i;
                         ret = seg.getBytes(offset_i,(endOffset-offset_i));
-                    }                    
+                    }  break;                 
                 }
                 if (findEnd == false)
                 {
@@ -57,13 +57,14 @@ public class FindConstString {
                             ret.add(bytes);
                         }
                     }
+                    break;
                 }
                  if (findEnd == false)
                 {
                     for (Byte bytes:seg.getBytes(0,endOffset))
                     {
                        ret.add(bytes);
-                    }
+                    }                    
                 }
             }
         }

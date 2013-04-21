@@ -2,10 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.syr.bytecast.jimple.runtime
+package edu.syr.bytecast.runtime;
 
 import edu.syr.bytecast.amd64.api.constants.InstructionType;
 import edu.syr.bytecast.amd64.api.constants.OperandType;
+import edu.syr.bytecast.amd64.api.constants.RegisterType;
 import edu.syr.bytecast.amd64.api.instruction.IInstruction;
 import edu.syr.bytecast.amd64.api.output.MemoryInstructionPair;
 import java.util.ArrayList;
@@ -27,21 +28,22 @@ public class PrintFilterAll {
         {
             IInstruction inst = instList.get(index).getInstruction();
             
-            if(inst.getInstructiontype() == InstructionType.CALLQ
-                    && (inst.getOperands().get(1).getOperandValue() == "<Printf@plt>"
-                    ||inst.getOperands().get(1).getOperandValue() == "<printf@plt>") )
+            if(inst.getInstructiontype().equals(InstructionType.CALLQ)
+                    && inst.getOperands().get(1).getOperandType().equals(OperandType.SECTION_NAME)
+                    && (inst.getOperands().get(1).getOperandValue().equals("Printf@plt")                
+                    ||inst.getOperands().get(1).getOperandValue().equals("printf@plt")))
             {
                 end = index;                
                 for (index -= 10;index<end;index++)
                 {
                     IInstruction inst1 = instList.get(index).getInstruction();
-                    if(inst1.getInstructiontype() == InstructionType.MOV)
+                    if(inst1.getInstructiontype().equals(InstructionType.MOV))
                     {
-                        if(inst1.getOperands().get(0).getOperandType() == OperandType.CONSTANT
-                           && inst1.getOperands().get(0).getOperandValue() != "$0x0"
-                           && inst1.getOperands().get(1).getOperandType() == OperandType.REGISTER
-                           && inst1.getOperands().get(1).getOperandValue() == "%eax" )
-                        {                         
+                        if(inst1.getOperands().get(0).getOperandType().equals(OperandType.MEMORY_EFFECITVE_ADDRESS)
+                           && !inst1.getOperands().get(0).getOperandValue().equals(0L)
+                           && inst1.getOperands().get(1).getOperandType().equals(OperandType.REGISTER)
+                           && inst1.getOperands().get(1).getOperandValue().equals(RegisterType.EAX))
+                        {                      
                             start = index ;
                         }
                     }
