@@ -1,5 +1,0 @@
-
-a.out:     file format elf32-i386
-
-Contents of section .rodata:
- 80484b8 03000000 01000200 256400             ........%d.     
