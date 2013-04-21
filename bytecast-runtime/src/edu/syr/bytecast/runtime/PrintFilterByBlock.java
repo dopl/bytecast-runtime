@@ -30,8 +30,8 @@ public class PrintFilterByBlock {
             
             if(inst.getInstructiontype().equals(InstructionType.CALLQ)
                     && inst.getOperands().get(1).getOperandType().equals(OperandType.SECTION_NAME)
-                    && (inst.getOperands().get(1).getOperandValue().equals("<Printf@plt>")                
-                    ||inst.getOperands().get(1).getOperandValue().equals("<printf@plt>")))
+                    && (inst.getOperands().get(1).getOperandValue().equals("Printf@plt")                
+                    ||inst.getOperands().get(1).getOperandValue().equals("printf@plt")))
             {
                 end = index;                
                 for (index -= 10;index<end;index++)
