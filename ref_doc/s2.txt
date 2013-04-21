@@ -1,0 +1,11 @@
+
+a.out:     file format elf64-x86-64
+
+
+Disassembly of section .rodata:
+
+0000000000400658 <_IO_stdin_used>:
+  400658:	01 00 02 00 48 65 6c 6c 6f 20 57 6f 72 6c 64 00     ....Hello World.
+  400668:	76 61 6c 75 65 20 6f 66 20 61 20 61 6e 64 20 62     value of a and b
+  400678:	20 69 73 20 25 64 20 25 64 00 76 61 6c 75 65 20      is %d %d.value 
+  400688:	6f 66 63 20 25 64 00 42 79 65 00                    ofc %d.Bye.
