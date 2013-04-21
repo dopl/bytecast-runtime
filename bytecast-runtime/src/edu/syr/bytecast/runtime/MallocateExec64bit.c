@@ -1,15 +1,10 @@
 /* 
- * File:   main.c
+ * File:   MallocateExec64bit.c
  * Author: chengxu
  *
  * Created on April 20, 2013, 9:15 AM
  */
-/* 
- * File:   main2.c
- * Author: chengxu
- *
- * Created on March 10, 2013, 12:56 PM
- */
+
 #include <sys/types.h>
 #include <sys/mman.h>
 #include <err.h>

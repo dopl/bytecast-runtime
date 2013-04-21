@@ -1,5 +1,5 @@
 /* 
- * File:   main2.c
+ * File:   allocateExe32bit.c
  * Author: chengxu
  *
  * Created on March 10, 2013, 12:56 PM
