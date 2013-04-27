@@ -1,0 +1,8 @@
+
+a.out:     file format elf64-x86-64
+
+
+Disassembly of section .rodata:
+
+00000000004005f8 <_IO_stdin_used>:
+  4005f8:	01 00 02 00 48 65 6c 6c 6f 20 57 6f 72 6c 64 00     ....Hello World.
