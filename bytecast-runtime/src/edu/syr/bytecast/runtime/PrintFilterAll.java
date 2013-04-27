@@ -72,7 +72,7 @@ public class PrintFilterAll {
                         if(inst1.getOperands().get(0).getOperandType().equals(OperandType.MEMORY_EFFECITVE_ADDRESS)
                            && !inst1.getOperands().get(0).getOperandValue().equals(0L)
                            && inst1.getOperands().get(1).getOperandType().equals(OperandType.REGISTER)
-                           && inst1.getOperands().get(1).getOperandValue().equals(RegisterType.EDI))
+                           && inst1.getOperands().get(1).getOperandValue().equals(RegisterType.EAX))
                         {                      
                             setStart(index) ;
                         }

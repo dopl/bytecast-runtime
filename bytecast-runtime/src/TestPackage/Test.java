@@ -24,7 +24,7 @@ import java.util.logging.Logger;
 public class Test {
     public static void main(String a[]) throws Exception{
         Set<String> exclusion = new HashSet<String>();
-         Paths.v().setRoot("/home/code/");                  
+         Paths.v().setRoot("/home/code/bytecast/");                  
         try {
             Paths.v().parsePathsFile();
         } catch (Exception e) {
@@ -33,7 +33,7 @@ public class Test {
         exclusion.add("<_IO_printf>");
         AMD64MockGenerator gen = 
                 new AMD64MockGenerator(new MockBytecastFsys(),
-                "/home/code/bytecast-documents/AsciiManip01Prototype/a.out.static.objdump",
+                "/home/code/bytecast/bytecast-documents/AsciiManip01Prototype/a.out.static.objdump",
                 "<main>",exclusion);
         try {
             IExecutableFile ex = gen.generate().buildInstructionObjects();
