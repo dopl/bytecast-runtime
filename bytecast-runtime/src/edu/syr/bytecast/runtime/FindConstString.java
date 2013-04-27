@@ -17,7 +17,19 @@ import java.util.ArrayList;
  * @author mengxi
  */
 public class FindConstString {
-    public String ConstString; 
+    private String ConstString; 
+    
+        public String getConstString() {
+        return ConstString;
+    }
+
+    /**
+     * @param ConstString the ConstString to set
+     */
+    public void setConstString(String ConstString) {
+        this.ConstString = ConstString;
+    }
+    
     public String find(List<ExeObjSegment> raw_data,long mem_addr)
     {
         List<Byte> ret = new ArrayList<Byte>();
@@ -68,8 +80,8 @@ public class FindConstString {
                 }
             }
         }
-        ConstString = BytesToString(ret);
-        return ConstString; 
+        setConstString(BytesToString(ret));
+        return getConstString(); 
     }
      
     public static int safeLongToInt(long l) {
@@ -153,4 +165,9 @@ public class FindConstString {
 //        }   
 //        return str;
 //    }
+
+    /**
+     * @return the ConstString
+     */
+
 }

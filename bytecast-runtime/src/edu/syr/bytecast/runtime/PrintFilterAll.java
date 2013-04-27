@@ -17,12 +17,42 @@ import java.util.List;
  * @author mengxi
  */
 public class PrintFilterAll {
-    private int start = 0;
-    private int end = 0;  
+    private int start;
+    private int end;  
     public List<List<Integer>> printfIndexList;
+    
+        /**
+     * @return the start
+     */
+    public int getStart() {
+        return start;
+    }
+
+    /**
+     * @param start the start to set
+     */
+    public void setStart(int start) {
+        this.start = start;
+    }
+
+    /**
+     * @return the end
+     */
+    public int getEnd() {
+        return end;
+    }
+
+    /**
+     * @param end the end to set
+     */
+    public void setEnd(int end) {
+        this.end = end;
+    }
     
     public void filter(List<MemoryInstructionPair> instList)
     {
+        this.setStart(0);
+        this.setEnd(0);
         int index;
         for (index = 0;index<instList.size();index++)
         {
@@ -33,8 +63,8 @@ public class PrintFilterAll {
                     && (inst.getOperands().get(1).getOperandValue().equals("Printf@plt")                
                     ||inst.getOperands().get(1).getOperandValue().equals("printf@plt")))
             {
-                end = index;                
-                for (index -= 10;index<end;index++)
+                setEnd(index);                
+                for (index -= 10;index<getEnd();index++)
                 {
                     IInstruction inst1 = instList.get(index).getInstruction();
                     if(inst1.getInstructiontype().equals(InstructionType.MOV))
@@ -42,23 +72,25 @@ public class PrintFilterAll {
                         if(inst1.getOperands().get(0).getOperandType().equals(OperandType.MEMORY_EFFECITVE_ADDRESS)
                            && !inst1.getOperands().get(0).getOperandValue().equals(0L)
                            && inst1.getOperands().get(1).getOperandType().equals(OperandType.REGISTER)
-                           && inst1.getOperands().get(1).getOperandValue().equals(RegisterType.EAX))
+                           && inst1.getOperands().get(1).getOperandValue().equals(RegisterType.EDI))
                         {                      
-                            start = index ;
+                            setStart(index) ;
                         }
                     }
                 }
-                if((end - start) <= 10)
+                if((getEnd() - getStart()) <= 10)
                 {
                     List<Integer> temp = new ArrayList<Integer>();
-                    while (start<=end)
+                    while (getStart()<=getEnd())
                     {                        
-                        temp.add(start);
-                        start++;
+                        temp.add(getStart());
+                        setStart(getStart() + 1);
                     }
                     printfIndexList.add(temp);
                 }
             }
         }       
     } 
+
+
 }

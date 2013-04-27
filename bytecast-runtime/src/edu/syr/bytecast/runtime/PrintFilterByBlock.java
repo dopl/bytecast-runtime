@@ -17,12 +17,42 @@ import java.util.List;
  * @author mengxi
  */
 public class PrintFilterByBlock {
-    private int start = 0;
-    private int end = 0;  
+    private int start;
+    private int end;  
     public ArrayList<MemoryInstructionPair> printfInstList;
     
+    /**
+     * @return the start
+     */
+    public int getStart() {
+        return start;
+    }
+
+    /**
+     * @param start the start to set
+     */
+    public void setStart(int start) {
+        this.start = start;
+    }
+
+    /**
+     * @return the end
+     */
+    public int getEnd() {
+        return end;
+    }
+
+    /**
+     * @param end the end to set
+     */
+    public void setEnd(int end) {
+        this.end = end;
+    }
+    
     public void filter(List<MemoryInstructionPair> instList, int startIndex)
-    {        
+    {   
+        this.setStart(0);
+        this.setEnd(0);
         Boolean find = false;
         for (int index = startIndex;index<instList.size();index++)
         {
@@ -30,11 +60,11 @@ public class PrintFilterByBlock {
             
             if(inst.getInstructiontype().equals(InstructionType.CALLQ)
                     && inst.getOperands().get(1).getOperandType().equals(OperandType.SECTION_NAME)
-                    && (inst.getOperands().get(1).getOperandValue().equals("<Printf@plt>")                
-                    ||inst.getOperands().get(1).getOperandValue().equals("<printf@plt>")))
+                    && (inst.getOperands().get(1).getOperandValue().equals("Printf@plt")                
+                    ||inst.getOperands().get(1).getOperandValue().equals("printf@plt")))
             {
-                end = index;                
-                for (index -= 10;index<end;index++)
+                setEnd(index);                
+                for (index -= 10;index<getEnd();index++)
                 {
                     IInstruction inst1 = instList.get(index).getInstruction();
                     if(inst1.getInstructiontype().equals(InstructionType.MOV))
@@ -44,17 +74,17 @@ public class PrintFilterByBlock {
                            && inst1.getOperands().get(1).getOperandType().equals(OperandType.REGISTER)
                            && inst1.getOperands().get(1).getOperandValue().equals(RegisterType.EAX))
                         {                         
-                            start = index ;
+                            setStart(index) ;
                         }
                     }
                 }
-                if((end - start) <= 10)
+                if((getEnd() - getStart()) <= 10)
                 {                
                     find = true;
-                    while (start<=end)
+                    while (getStart()<=getEnd())
                     {                        
-                        printfInstList.add(instList.get(start));
-                        start++;
+                        printfInstList.add(instList.get(getStart()));
+                        setStart(getStart() + 1);
                     }
                 }
             }
@@ -64,4 +94,5 @@ public class PrintFilterByBlock {
             }
         }       
     } 
+
 }
