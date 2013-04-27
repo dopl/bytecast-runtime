@@ -5,7 +5,7 @@
 
 package edu.syr.bytecast.runtime;
 
-import java.util.Stack;
+import java.util.*;
 
 /**
  *
@@ -13,11 +13,20 @@ import java.util.Stack;
  */
 public class Runtime {
     private String m_ConstString;
-    private Stack<Object> m_parameters;
+    private List<Integer> m_parameters;
+    private Byte[] commands;
     
-    public Runtime(String str, Stack<Object> s){
+    public Runtime(String str, List<Integer> s)
+    {
         this.m_ConstString = str;
         this.m_parameters = s;
+    }
+    
+    public Runtime(String str, List<Integer> s, Byte[] a)
+    {
+        this.m_ConstString = str;
+        this.m_parameters = s;
+        this.commands= a;
     }
     
     /**
@@ -37,33 +46,25 @@ public class Runtime {
     /**
      * @return the parameters
      */
-    public Stack<Object> getParameters() {
+    public List<Integer> getParameters() {
         return m_parameters;
     }
 
     /**
      * @param parameters the parameters to set
      */
-    public void setParameters(Stack<Object> parameters) {
+    public void setParameters(List<Integer> parameters) {
         this.m_parameters = parameters;
     }
     
-    public void push(Object obj){
-        getParameters().push(obj);
+    public void addParameter(int p){
+        getParameters().add(p);
     }
     
     public void printf(){
-            printString(getConstString(), getParameters());
+            printString(getConstString(), getParameters(), commands);
     }
     
-    private native void printString(String str, Stack<Object> s);
-    
-    public void syscall(){
-    }
-    
-    public static void main(String[] args) {
-        
-    }
-
+    private native void printString(String str,  List<Integer> s, Byte[] c);
     
 }

@@ -14,6 +14,9 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import edu.syr.bytecast.runtime.*;
+import edu.syr.bytecast.interfaces.fsys.*;
+import edu.syr.bytecast.test.mockups.MockBytecastFsysPoc3;
 
 /**
  *
@@ -22,9 +25,9 @@ import java.util.logging.Logger;
  *  Test some of bytecast-runtime function, using AMD64 MockGenerator
  */
 public class Test {
-    public static void main(String a[]) throws Exception{
+    public static void main(String a[]) throws Exception{       
         Set<String> exclusion = new HashSet<String>();
-         Paths.v().setRoot("/home/code/bytecast/");                  
+         Paths.v().setRoot("/home/mengxi/code/bytecast/");                  
         try {
             Paths.v().parsePathsFile();
         } catch (Exception e) {
@@ -32,11 +35,13 @@ public class Test {
         }
         exclusion.add("<_IO_printf>");
         AMD64MockGenerator gen = 
-                new AMD64MockGenerator(new MockBytecastFsys(),
-                "/home/code/bytecast/bytecast-documents/AsciiManip01Prototype/a.out.static.objdump",
+                new AMD64MockGenerator(new MockBytecastFsysPoc3(),
+                "/home/mengxi/code/bytecast/bytecast-documents/AsciiManip01Prototype/a.out.static.objdump",
                 "<main>",exclusion);
         try {
             IExecutableFile ex = gen.generate().buildInstructionObjects();
+            FindConstString fcs = new FindConstString();
+            System.out.println(fcs.find(ex.getSectionsWithRawData(), 4195996));
             
         } catch (FileNotFoundException ex1) {
             Logger.getLogger(AMD64MockGenerator.class.getName()).log(Level.SEVERE, null, ex1);

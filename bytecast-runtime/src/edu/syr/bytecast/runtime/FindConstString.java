@@ -5,6 +5,7 @@
 package edu.syr.bytecast.runtime;
 
 import java.io.*;
+import edu.syr.bytecast.interfaces.fsys.*;
 import edu.syr.bytecast.amd64.api.constants.FileFormats;
 import edu.syr.bytecast.amd64.api.output.IExecutableFile;
 import edu.syr.bytecast.amd64.api.output.ISection;
@@ -18,6 +19,14 @@ import java.util.ArrayList;
  */
 public class FindConstString {
     private String ConstString; 
+    private IBytecastFsys m_fsys;
+    private String m_filepath;
+    
+//    public FindConstString(IBytecastFsys fsys){
+//        this.m_fsys = fsys;
+//        this.ConstString = "";
+//        this.m_filepath  = "/home/code/bytecast/bytecast-document/AsciiManip01Prototype/a.out.static";
+//    }
     
         public String getConstString() {
         return ConstString;
@@ -102,6 +111,14 @@ public class FindConstString {
         }
 
         return file_string;    
+    }
+    
+    public void main() throws Exception{
+        m_fsys.setFilepath(m_filepath);
+        ExeObj exeObj = m_fsys.parse();
+        List<ExeObjSegment> segments = exeObj.getSegments();
+        long mem_a = 4195996;
+        System.out.println(find(segments,mem_a));
     }
 //    public void find(String rodataFilePath)
 //    {        
