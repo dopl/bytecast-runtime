@@ -15,18 +15,18 @@ import java.util.*;
  *
  * @author Tongxu
  */
-public class Runtime {
+public class BytecastRuntime {
     private char[] m_ConstString;
     private int m_parameters;
     private char[] commands;
     
     
-    public Runtime(String s, int i){
+    public BytecastRuntime(String s, int i){
         this.m_ConstString = s.toCharArray();
         this.m_parameters = i;
     }
     
-    public Runtime(String s, int i, char[] a)
+    public BytecastRuntime(String s, int i, char[] a)
     {
         this.m_ConstString = s.toCharArray();
         this.m_parameters = i;

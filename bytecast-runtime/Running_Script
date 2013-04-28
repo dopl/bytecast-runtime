@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cd src/edu/syr/bytecast/runtime/
+gcc -shared -I /usr/lib/jvm/java-6-openjdk/include printString.c -o libPrintStr.so

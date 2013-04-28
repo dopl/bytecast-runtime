@@ -25,28 +25,43 @@ import edu.syr.bytecast.test.mockups.MockBytecastFsysPoc3;
  *  Test some of bytecast-runtime function, using AMD64 MockGenerator
  */
 public class Test {
-    public static void main(String a[]) throws Exception{       
-        Set<String> exclusion = new HashSet<String>();
-         Paths.v().setRoot("/home/mengxi/code/bytecast/");                  
-        try {
-            Paths.v().parsePathsFile();
-        } catch (Exception e) {
+    public static void main(String a[]) throws Exception{   
+              
+//        Set<String> exclusion = new HashSet<String>();
+//         Paths.v().setRoot("/home/mengxi/code/bytecast/");                  
+//        try {
+//            Paths.v().parsePathsFile();
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//        }
+        try{
+        LoadDLL loader = new LoadDLL();
+        String path = "./src/edu/syr/bytecast/runtime/libPrintStr.so";
+        loader.load(path);
+//        loader.load("/home/mengxi/code/bytecast/bytecast-runtime/bytecast-runtime/src/edu/syr/bytecast/runtime/libPrintStr.so");
+        
+        BytecastRuntime bytecast_runtime = new BytecastRuntime("!!the value is %d", 555);;
+        bytecast_runtime.Print();
+        } catch (Exception e)
+        {
             System.out.println(e.getMessage());
         }
-        exclusion.add("<_IO_printf>");
-        AMD64MockGenerator gen = 
-                new AMD64MockGenerator(new MockBytecastFsysPoc3(),
-                "/home/mengxi/code/bytecast/bytecast-documents/AsciiManip01Prototype/a.out.static.objdump",
-                "<main>",exclusion);
-        try {
-            IExecutableFile ex = gen.generate().buildInstructionObjects();
-            FindConstString fcs = new FindConstString();
-            System.out.println(fcs.find(ex.getSectionsWithRawData(), 4195996));
-            
-        } catch (FileNotFoundException ex1) {
-            Logger.getLogger(AMD64MockGenerator.class.getName()).log(Level.SEVERE, null, ex1);
-        } catch (IOException ex1) {
-            Logger.getLogger(AMD64MockGenerator.class.getName()).log(Level.SEVERE, null, ex1);
-        }
+        
     }
+//        exclusion.add("<_IO_printf>");
+//        AMD64MockGenerator gen = 
+//                new AMD64MockGenerator(new MockBytecastFsysPoc3(),
+//                "/home/mengxi/code/bytecast/bytecast-documents/AsciiManip01Prototype/a.out.static.objdump",
+//                "<main>",exclusion);
+//        try {
+//            IExecutableFile ex = gen.generate().buildInstructionObjects();
+//            FindConstString fcs = new FindConstString();
+//            System.out.println(fcs.find(ex.getSectionsWithRawData(), 4195996));
+//            
+//        } catch (FileNotFoundException ex1) {
+//            Logger.getLogger(AMD64MockGenerator.class.getName()).log(Level.SEVERE, null, ex1);
+//        } catch (IOException ex1) {
+//            Logger.getLogger(AMD64MockGenerator.class.getName()).log(Level.SEVERE, null, ex1);
+//        }
+//    }
 }
