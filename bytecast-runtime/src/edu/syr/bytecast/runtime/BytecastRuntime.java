@@ -34,10 +34,10 @@ public class BytecastRuntime {
     }
     
     public void Print(){
-        printString(getCommands(), getConstString(), getParameters());
+        printString(getCommands(), getConstString(), getParameters(),m_ConstString.length);
     }
     
-    private native void printString(char[] cmd, char[] string, int parameter);
+    private native void printString(char[] cmd, char[] string, int parameter, int len);
 
     /**
      * @return the ConstString

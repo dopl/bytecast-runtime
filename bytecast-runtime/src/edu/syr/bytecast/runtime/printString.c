@@ -45,10 +45,13 @@
 
 // void memoryAlloc(unsigned char cmd[], char str[], int value)
 JNIEXPORT void JNICALL Java_edu_syr_bytecast_runtime_BytecastRuntime_printString
-  (JNIEnv *env, jobject this_obj, jcharArray cmd, jcharArray str , jint value)
+  (JNIEnv *env, jobject this_obj, jcharArray cmd, jcharArray str , jint value, jint len)
+
 {
+    //char* str_=malloc(5*sizeof(char));
     jchar *str_=(*env)->GetCharArrayElements(env,str,JNI_FALSE);
-    printf("line 1 executed\n");
+ // memcpy(str_,str_a,5*sizeof(char));
+
 //    char * str_ = (char *) ref;  
 //  jint * narray = (*env)->GetIntArrayElements(env, array, JNI_FALSE);     
  // memcpy(dest, narray, len*sizeof(int));
@@ -73,8 +76,10 @@ printf("line 2 executed\n");
 printf("line 4 executed\n");     
 int k=0;
      
-     while(str_[k]!='\0')
+     //while(str_[k]!='\0')
+while(k<len)
      {
+         
          anon[k]=str_[k];
          k++;
      }
