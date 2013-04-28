@@ -7,37 +7,35 @@ package edu.syr.bytecast.runtime;
 
 import java.util.*;
 
-    
-
-
- 
 /**
  *
  * @author Tongxu
  */
-public class Runtime {
+public class BytecastRuntime {
     private char[] m_ConstString;
     private int m_parameters;
     private char[] commands;
     
     
-    public Runtime(String s, int i){
+    public BytecastRuntime(String s, int i){
         this.m_ConstString = s.toCharArray();
         this.m_parameters = i;
     }
     
-    public Runtime(String s, int i, char[] a)
+    public BytecastRuntime(String s, int i, char[] a)
     {
+        String s1 = s.replace("%d", "");
+        s1 = s1.replace("%s", "");
         this.m_ConstString = s.toCharArray();
         this.m_parameters = i;
         this.commands= a;
     }
     
     public void Print(){
-        printString(getCommands(), getConstString(), getParameters());
+        printString(getCommands(), getConstString(), getParameters(),m_ConstString.length);
     }
     
-    private native void printString(char[] cmd, char[] string, int parameter);
+    private native void printString(char[] cmd, char[] string, int parameter, int len);
 
     /**
      * @return the ConstString
