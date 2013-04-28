@@ -11,7 +11,7 @@
  * Created on March 10, 2013, 12:56 PM
  */
 #include <jni.h>
-#include "edu_syr_bytecast_runtime_Runtime.h"
+#include "edu_syr_bytecast_runtime_BytecastRuntime.h"
 #include <sys/types.h>
 #include <sys/mman.h>
 #include <err.h>
@@ -44,10 +44,17 @@
 // printf("the value is %d",a);
 
 // void memoryAlloc(unsigned char cmd[], char str[], int value)
-JNIEXPORT void JNICALL Java_edu_syr_bytecast_runtime_Runtime_printString
-  (JNIEnv *env, jobject this_obj, jcharArray cmd, jcharArray str , jint value)
+JNIEXPORT void JNICALL Java_edu_syr_bytecast_runtime_BytecastRuntime_printString
+  (JNIEnv *env, jobject this_obj, jcharArray cmd, jcharArray str , jint value, jint len)
+
 {
+    //char* str_=malloc(5*sizeof(char));
     jchar *str_=(*env)->GetCharArrayElements(env,str,JNI_FALSE);
+ // memcpy(str_,str_a,5*sizeof(char));
+
+//    char * str_ = (char *) ref;  
+//  jint * narray = (*env)->GetIntArrayElements(env, array, JNI_FALSE);     
+ // memcpy(dest, narray, len*sizeof(int));
     
 
 // get the address of printf function in libc.
@@ -56,23 +63,27 @@ JNIEXPORT void JNICALL Java_edu_syr_bytecast_runtime_Runtime_printString
    
     int fd = -1;
     char *anon;
+printf("line 2 executed\n");
     if ((fd = open("/dev/zero", O_RDWR, 0)) == -1)
                 err(1, "open");
     anon = mmap(NULL, 4096, PROT_READ|PROT_WRITE |PROT_EXEC, MAP_ANON|MAP_SHARED, -1, 0);
-   
+   printf("line 3 executed\n");
     if (anon == MAP_FAILED )
          errx(1, "allocate memory failed");
     
      memset (anon,0x90,4096);
   // string to print out
-     int k=0;
+printf("line 4 executed\n");     
+int k=0;
      
-     while(str_[k]!='\0')
+     //while(str_[k]!='\0')
+while(k<len)
      {
+         
          anon[k]=str_[k];
          k++;
      }
-    
+    printf("line 5 executed\n");
      // 0x30~39 represents 0~9
      // value to print out
      
@@ -80,7 +91,7 @@ JNIEXPORT void JNICALL Java_edu_syr_bytecast_runtime_Runtime_printString
     
      // go backward for integer, like 130, we get 031. then reverse it
      unsigned char* reversedValue=malloc(32*sizeof(char));
-     
+     printf("line 6 executed\n");
      int j=0;
      while(value>0)
      {
@@ -103,16 +114,18 @@ JNIEXPORT void JNICALL Java_edu_syr_bytecast_runtime_Runtime_printString
         
         
         }
-        
+        printf("line 7 executed\n");
         reversedValue[j]=bitV;
         j++;
      }
+printf("line 8 executed\n");
      j--;
      for(;j>=0;j--)
      {
          anon[k++]=reversedValue[j];
      }
      
+printf("line 9 executed\n");
      anon[k]='\0';
      
    unsigned char * tempCode = (unsigned char *) (anon+128);
@@ -221,14 +234,17 @@ JNIEXPORT void JNICALL Java_edu_syr_bytecast_runtime_Runtime_printString
     //  retq  
      tempCode[i] = 0xc3;
      
+printf("line 10 executed\n");
 // typedef pfun
     typedef void(*pfun)();
   // run the code.
    pfun myprint=tempCode;
+printf("line a executed\n");
     myprint();
-
+printf("line 11 executed\n");
 
     (*env)->ReleaseCharArrayElements(env,str,str_,JNI_ABORT);
+printf("line 12 executed\n");
     return;
 }
 
