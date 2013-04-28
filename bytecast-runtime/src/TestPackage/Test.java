@@ -45,7 +45,7 @@ public class Test {
 //        
 //        int str_len=strToPrint.length;
 //        
-        BytecastRuntime bytecast_runtime = new BytecastRuntime("the value is ", 110);
+        BytecastRuntime bytecast_runtime = new BytecastRuntime("the value is :\n", 110);
         
         bytecast_runtime.Print();
         } catch (Exception e)
