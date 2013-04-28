@@ -7,10 +7,6 @@ package edu.syr.bytecast.runtime;
 
 import java.util.*;
 
-    
-
-
- 
 /**
  *
  * @author Tongxu
@@ -28,7 +24,9 @@ public class BytecastRuntime {
     
     public BytecastRuntime(String s, int i, char[] a)
     {
-        this.m_ConstString = s.toCharArray();
+        String s1 = s.replace("%d","");
+        s1 = s1.replace("%s","");
+        this.m_ConstString = s1.toCharArray();        
         this.m_parameters = i;
         this.commands= a;
     }
@@ -80,7 +78,4 @@ public class BytecastRuntime {
     public void setCommands(char[] commands) {
         this.commands = commands;
     }
-            
-
-    
 }

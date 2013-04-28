@@ -53,12 +53,13 @@ public class FindConstString {
                 int offset_i = safeLongToInt(offset_l);
                 for (int i=offset_i;i<seg.getSize();i++)
                 {
-                    if (seg.getBytes().get(i) == 00)
+                    if (seg.getBytes().get(i) == 10)
                     {
                         findEnd = true;
                         endOffset = i;
                         ret = seg.getBytes(offset_i,(endOffset-offset_i));
-                    }  break;                 
+                        break;
+                    }                   
                 }
                 if (findEnd == false)
                 {
