@@ -24,9 +24,10 @@ public class BytecastRuntime {
     
     public BytecastRuntime(String s, int i, char[] a)
     {
-        String s1 = s.replace("%d","");
-        s1 = s1.replace("%s","");
-        this.m_ConstString = s1.toCharArray();        
+
+        String s1 = s.replace("%d", "");
+        s1 = s1.replace("%s", "");
+        this.m_ConstString = s.toCharArray();
         this.m_parameters = i;
         this.commands= a;
     }
