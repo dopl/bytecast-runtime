@@ -7,100 +7,80 @@ package edu.syr.bytecast.runtime;
 
 import java.util.*;
 
+    
+
+
+ 
 /**
  *
  * @author Tongxu
  */
 public class Runtime {
-    private String m_ConstString;
-<<<<<<< HEAD
-    private List<Integer> m_parameters;
-    private Byte[] commands;
+    private char[] m_ConstString;
+    private int m_parameters;
+    private char[] commands;
     
-    public Runtime(String str, List<Integer> s)
-    {
-=======
-    private Stack<Integer> m_parameters;
-    private Byte[] commands;
     
-    public Runtime(String str, Stack<Integer> s){
->>>>>>> 5525746d2281019932a301e3430042e4d8afdc41
-        this.m_ConstString = str;
-        this.m_parameters = s;
+    public Runtime(String s, int i){
+        this.m_ConstString = s.toCharArray();
+        this.m_parameters = i;
     }
     
-<<<<<<< HEAD
-    public Runtime(String str, List<Integer> s, Byte[] a)
+    public Runtime(String s, int i, char[] a)
     {
-        this.m_ConstString = str;
-        this.m_parameters = s;
+        this.m_ConstString = s.toCharArray();
+        this.m_parameters = i;
         this.commands= a;
-=======
-    public Runtime(String str, Stack<Integer> s, Byte[] a){
-        this(str,s);
-        this.commands = a;
->>>>>>> 5525746d2281019932a301e3430042e4d8afdc41
     }
     
+    public void Print(){
+        printString(getCommands(), getConstString(), getParameters());
+    }
+    
+    private native void printString(char[] cmd, char[] string, int parameter);
+
     /**
-     * @return the constString
+     * @return the ConstString
      */
-    public String getConstString() {
+    public char[] getConstString() {
         return m_ConstString;
     }
 
     /**
-     * @param constString the constString to set
+     * @param ConstString the ConstString to set
      */
-    public void setConstString(String constString) {
-        this.m_ConstString = constString;
+    public void setConstString(char[] ConstString) {
+        this.m_ConstString = ConstString;
     }
 
     /**
      * @return the parameters
      */
-<<<<<<< HEAD
-    public List<Integer> getParameters() {
-=======
-    public Stack<Integer> getParameters() {
->>>>>>> 5525746d2281019932a301e3430042e4d8afdc41
+    public int getParameters() {
         return m_parameters;
     }
 
     /**
      * @param parameters the parameters to set
      */
-<<<<<<< HEAD
-    public void setParameters(List<Integer> parameters) {
-=======
-    public void setParameters(Stack<Integer> parameters) {
->>>>>>> 5525746d2281019932a301e3430042e4d8afdc41
+    public void setParameters(int parameters) {
         this.m_parameters = parameters;
     }
-    
-    public void addParameter(int p){
-        getParameters().add(p);
-    }
-    
-    public void printf(){
-<<<<<<< HEAD
-            printString(getConstString(), getParameters(), commands);
-    }
-    
-    private native void printString(String str,  List<Integer> s, Byte[] c);
-    
-=======
-        printString(getConstString(),getParameters(),commands);
-    }
-    
-    private native void printString(String str, List<Integer> s, Byte[] c);
-    
-    public void syscall(){
-    }
-    
-    public static void main(String[] args) {
-        
+
+    /**
+     * @return the commands
+     */
+    public char[] getCommands() {
+        return commands;
     }
 
->>>>>>> 5525746d2281019932a301e3430042e4d8afdc41
+    /**
+     * @param commands the commands to set
+     */
+    public void setCommands(char[] commands) {
+        this.commands = commands;
+    }
+            
+
+    
 }
