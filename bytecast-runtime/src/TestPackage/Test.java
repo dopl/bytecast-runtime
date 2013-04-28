@@ -40,7 +40,13 @@ public class Test {
         loader.load(path);
 //        loader.load("/home/mengxi/code/bytecast/bytecast-runtime/bytecast-runtime/src/edu/syr/bytecast/runtime/libPrintStr.so");
         
-        BytecastRuntime bytecast_runtime = new BytecastRuntime("!!the value is %d", 555);;
+        
+//        char[] strToPrint=new String("the value is").toCharArray();
+//        
+//        int str_len=strToPrint.length;
+//        
+        BytecastRuntime bytecast_runtime = new BytecastRuntime("the value is ", 110);
+        
         bytecast_runtime.Print();
         } catch (Exception e)
         {
